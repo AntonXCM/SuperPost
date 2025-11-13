@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+    <meta charset="utf-8"/>
+    <title>СУПЕР ПОСТ</title>
+    <style>
+        body { 
+            font-family:'Fira Code';
+            padding:0 16px;
+            font-size: 28px;
+        }
+        h2{
+            margin-bottom: -10px;
+            font-size: 100%;
+        }
+        textarea {
+            width:100%;
+            height:140px;
+            margin-top:8px
+        }
+        label, button {
+            display: flex;
+            padding:6px 12px;
+            line-height: 1.5;
+        }
+        img {
+            height: 20px;
+        }
+        .input-holder {
+            width: 100% !important;
+            flex-direction: row;
+            align-content:center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .social-media {
+            display: block;
+            border: solid;
+            border-width: 3px;
+            border-color: white;
+            background: linear-gradient(170deg, white 50%, gainsboro, white);
+            border-radius: 25px/ 50%;
+            padding: 5px 10px;
+            box-shadow: gray 0 10px 25px;
+        }
+        .evil-metal {
+            background: linear-gradient(170deg,lightsalmon 20%, indianred 50%, darksalmon);
+
+            box-shadow: gray 0 10px 15px;
+        }
+        button {
+            font-family: 'Monaspace Radon NF Light', 'Fira Code', monospace;
+            font-weight: 800;
+            font-size: 100%;
+        }
+        textarea {
+            background: linear-gradient(170deg,white 50%, gainsboro, white);
+            border: solid;
+            border-color: white;
+            border-radius: 25px;
+            box-shadow: inset gray 0 2px 5px;
+            padding: 10px 10px;
+        }
+        vertical-text {
+            display:block;
+            height: inherit;
+            white-space: nowrap;
+            margin-right: 25px;
+            align-content: center;
+        }
+        smal {
+            font-size: 50%;
+            font-style: italic;
+        }
+    </style>
+    </head>
+    <body>
+    <h2 style="white-space: nowrap;">СУПЕРПОСТ<a style='color:blue'>СУПЕРПОСТ</a><a style='color: dodgerblue'>СУПЕРПОСТ</a><a style='color: cyan'>СУПЕРПОСТ</a><a style='color: dodgerblue'>СУПЕРПОСТ</a><a style='color: blue'>СУПЕРПОСТ</a><a style='color: dodgerblue'>СУПЕРПОСТ</a><a style='color: cyan'>СУПЕРПОСТ</a><a style='color: dodgerblue'>СУПЕРПОСТ</a><a style='color: cyan'>СУПЕРПОСТ</a><a style='color: cyan'>СУПЕРПОСТ</a></h2>
+    <smal>Удобный публикатор для нескольких соцсетей от AntonXCM</smal>
+
+    <label>
+        <vertical-text>
+            <div>
+            Т П<br>
+            Е О<br>
+            К С<br>
+            С Т<br>
+            Т А<br>
+            </div>
+        </vertical-text>
+        <textarea id="text" placeholder="Текст поста" style="resize: none; height:300px;"></textarea>
+    </label>
+
+    <label class="input-holder">
+        <div class="social-media"><input type="checkbox" id="toDiscord" checked> <img src="https://companieslogo.com/img/orig/discord-b3a305bd.svg"></div>
+        <div class="social-media"><input type="checkbox" id="toTelegram" checked> <img src="https://companieslogo.com/img/orig/telegram-app-22620553.svg"></div>
+        <div class="evil-metal social-media"><input type="checkbox" id="toX" disabled> <img src="https://companieslogo.com/img/orig/TWTR-6e38ff77.svg"></div>
+    </label>
+    <label class="input-holder">
+        <button class="social-media" id="send">Отправить</button>
+    </label>
+    <div class="result" id="out"></div>
+
+        <script>
+            async function post(payload){
+                console.log(JSON.stringify(payload));
+                const res = await fetch("/server/post", {
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body: JSON.stringify(payload)
+                });
+                return res.json();
+            }
+            function showOut(text) {
+                document.getElementById("out").textContent = text;
+            }
+
+            document.getElementById("send").addEventListener("click", async ()=>{
+                const text = document.getElementById("text").value.trim();
+                if(!text)
+                {
+                    showOut("Текст пуст");
+                    return;
+                }
+                const payload = {
+                    text,
+                    toDiscord: document.getElementById("toDiscord").checked,
+                    toTelegram: document.getElementById("toTelegram").checked,
+                    toX: false,//document.getElementById('toX').checked,
+                };
+                showOut("Сервер думает ***");
+                try{
+                    const result = await post(payload);
+                    showOut(JSON.stringify(result, null, 2));
+                }catch(e){
+                    showOut(e.message);
+                }
+            });
+        </script>
+    </body>
+</html>
