@@ -1,0 +1,68 @@
+        body { 
+            font-family:'Fira Code';
+            padding:0 16px;
+            font-size: 28px;
+        }
+        h2{
+            margin-bottom: -10px;
+            font-size: 100%;
+        }
+        textarea {
+            width:100%;
+            height:140px;
+            margin-top:8px
+        }
+        label, button {
+            display: flex;
+            padding:6px 12px;
+            line-height: 1.5;
+        }
+        img {
+            height: 20px;
+        }
+        .input-holder {
+            width: 100% !important;
+            flex-direction: row;
+            align-content:center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .social-media {
+            display: block;
+            border: solid;
+            border-width: 3px;
+            border-color: white;
+            background: linear-gradient(170deg, white 50%, gainsboro, white);
+            border-radius: 25px/ 50%;
+            padding: 5px 10px;
+            box-shadow: gray 0 10px 25px;
+        }
+        .evil-metal {
+            background: linear-gradient(170deg,lightsalmon 20%, indianred 50%, darksalmon);
+
+            box-shadow: gray 0 10px 15px;
+        }
+        button {
+            font-family: 'Monaspace Radon NF Light', 'Fira Code', monospace;
+            font-weight: 800;
+            font-size: 100%;
+        }
+        textarea {
+            background: linear-gradient(170deg,white 50%, gainsboro, white);
+            border: solid;
+            border-color: white;
+            border-radius: 25px;
+            box-shadow: inset gray 0 2px 5px;
+            padding: 10px 10px;
+        }
+        vertical-text {
+            display:block;
+            height: inherit;
+            white-space: nowrap;
+            margin-right: 25px;
+            align-content: center;
+        }
+        smal {
+            font-size: 50%;
+            font-style: italic;
+        }

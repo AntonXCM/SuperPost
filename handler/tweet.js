@@ -1,7 +1,7 @@
 const { TwitterApi } = require("twitter-api-v2");
 //WARNING: Twitter Api is paid. Free plan doesn't allow posting messages
 
-async function send(text){
+async function send(text, file){
     const API_KEY = process.env.TWITTER_APP_KEY;
     if(!API_KEY) return { error: "twitter api key missing" };
     const API_SECRET = process.env.TWITTER_APP_SECRET;
